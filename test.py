@@ -87,10 +87,10 @@ if __name__ == '__main__':
 
     result_list = model.predict(X_test)
 
-    for result, y_dat in zip(result_list, Y_test):
+    for i,(result, y_dat) in enumerate(zip(result_list, Y_test)):
         x, y, radius = result * IMAGE_H
         y_x, y_y, y_radius = y_dat
-        print('predict x:{:.2f}, y:{:.2f}, r:{:.2f} Correct x:{:.2f}, y:{:.2f}, r:{:.2f}'.format(x,y,radius,y_x,y_y,y_radius))
+        print('test{:2d} predict x:{:6.2f}, y:{:6.2f}, r:{:6.2f} Correct x:{:6.2f}, y:{:6.2f}, r:{:6.2f}'.format(i,x,y,radius,y_x,y_y,y_radius))
 
     r_y_diff = np.abs(Y_test-result_list*IMAGE_H)
     r_y_err = r_y_diff.sum(axis=0) / len(Y_test)
